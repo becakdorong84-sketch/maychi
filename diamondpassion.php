@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="rwd" dir="ltr" lang="id">
-  <head>
+  <head> 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<title>JUTAWANTOTO ☣️ Daftar Akses Situs Toto Online & Bandar Togel Terpercaya No #1</title>
